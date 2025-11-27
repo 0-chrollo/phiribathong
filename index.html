@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phiribathong Consulting | construction,procurement & Digital Marketing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Navbar Styles */
+            nav {
+               
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: rgb(16, 51, 71);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+    
+            .nav-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0.5rem 1.2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 3px solid rgb(220, 160, 19);
+                
+            }
+            .logo {
+                color: #ffffff;
+                display: flex;
+                align-items: left;
+                align-self: flex-start;
+                text-decoration: none;
+                height: 55px;
+            }
+    
+            .logo img {
+                height:47px;
+                width: 55px;
+                           
+            }
+    
+            .nav-menu {
+                display: flex;
+                list-style: none;
+                gap: 2rem;
+            }
+    
+            
+            .nav-menu li a {
+                text-decoration: none;
+                color: #fff;
+                font-weight: 500;
+                transition: color 0.3s ease;
+                position: relative;
+            }
+    
+            .nav-menu li a::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: #667eea;
+                transition: width 0.3s ease;
+            }
+    
+            .nav-menu li a:hover {
+                color: #667eea;
+            }
+    
+            .nav-menu li a:hover::after {
+                width: 100%;
+            }
+    
+            /* Burger Menu */
+            .burger {
+                display: none;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+    
+            .burger span {
+                width: 25px;
+                height: 3px;
+                background: #ffffff;
+                border-radius: 0px;
+                transition: all 0.3s ease;
+            }
+    
+            /* Burger Animation */
+            .burger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+    
+            .burger.active span:nth-child(2) {
+                opacity: 0;
+            }
+    
+            .burger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+    
+            /* Content */
+            .content {
+                padding-top: 100px;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                color: white;
+            }
+    
+            .content h1 {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+    
+            .content p {
+                font-size: 1.2rem;
+                line-height: 1.6;
+            }
+    
+            /* Mobile Styles */
+            @media (max-width: 768px) {
+                .burger {
+                    display: flex;
+                }
+    
+                .nav-menu {
+                    color: #fff;
+                    border-top: 2px solid  rgb(255, 149, 0);
+                    border-bottom: 3.5px solid rgb(255, 149, 0);
+                    
+                    position: fixed;
+                    left: 0;
+                    top: 70px;
+                    flex-direction: column;
+                    background:rgb(16, 51, 71);
+                    width: 100%;
+                    text-align: center;
+                    gap: 0;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.4s ease-in-out;
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                }
+    
+                .nav-menu.active {
+                    max-height: 400px;
+                }
+    
+                .nav-menu li {
+                    color: #fff;
+                    padding: 1.5rem 0;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                }
+    
+                .nav-menu li a::after {
+                    display: none;
+
+                }
+    
+                .content h1 {
+                    font-size: 2rem;
+                    color: #fff;
+                }
+    
+                .content p {
+                    font-size: 1rem;
+                    color: #fff;
+                }
+            }
+        </style>
+
+        <nav>
+            <div class="nav-container">
+                <a href="#" class="logo"> 
+                    <img src="phiribathong-logo.png" alt="Logo">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    
+    
+        <script>
+            const burger = document.querySelector('.burger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-menu li a');
+    
+            // Toggle menu
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+    
+            // Close menu when clicking on a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    burger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+    
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!burger.contains(e.target) && !navMenu.contains(e.target)) {
+                    burger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            });
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+
+
+        .face {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        .hero {
+            position: relative;
+            height: 85vh;
+            max-height: 700px;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600');
+            background-size: cover;
+            background-position: center;
+            filter: blur(0px);
+            transform: scale(1.1);
+            transition: opacity 0.5s ease;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .background-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(3px);
+            transform: scale(1.1);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .background-layer.active {
+            opacity: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 2rem 6rem;
+            max-width: 900px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-description {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+
+        .btn {
+            padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: 600;
+            border: 2px solid rgb(255, 240, 218);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: rgb(16, 51, 71);
+            color:white
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #333;
+            transform: translateY(-2px);
+        }
+
+        .navigation-dots {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 20;
+        }
+
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .dot.active {
+            background: rgb(16, 51, 71);
+            border: 2px white solid;
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+           
+            color: white;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            font-size: 1.5rem;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+
+
+        .nav-arrow.left {
+            left: 2rem;
+        }
+
+        .nav-arrow.right {
+            right: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                min-height: 450px;
+            }
+
+            .hero-content {
+                padding: 1.5rem 4rem;
+            }
+
+            .button-group {
+                gap: 0.75rem;
+            }
+
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 5.2rem;
+            }
+
+            .nav-arrow.left {
+                left: 0.5rem;
+            }
+
+            .nav-arrow.right {
+                right: 0.5rem;
+            }
+        }
+    </style>
+<div class="face">
+    <div class="hero">
+        <div class="background-layer active" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600');"></div>
+        <div class="background-layer" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600');"></div>
+        
+        <div class="nav-arrow left">‹</div>
+        <div class="nav-arrow right">›</div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">Sneak Peek</h1>
+            <p class="hero-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus augue nec hendrerit consectetur. Suspendisse posuere lacus id porta pharetra. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+            <div class="button-group">
+                <a href="#" class="btn btn-primary">Get Started</a>
+                <a href="#" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+
+        <div class="navigation-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <script>
+        const slides = [
+            {
+                title: "Sneak Peek",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dapibus augue nec hendrerit consectetur. Suspendisse posuere lacus id porta pharetra. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            },
+            {
+                title: "Discover More",
+                description: "Explore amazing features and possibilities. Create stunning experiences with our powerful tools and intuitive design. Start your journey today."
+            }
+        ];
+
+        let currentSlide = 0;
+        const dots = document.querySelectorAll('.dot');
+        const leftArrow = document.querySelector('.nav-arrow.left');
+        const rightArrow = document.querySelector('.nav-arrow.right');
+        const title = document.querySelector('.hero-title');
+        const description = document.querySelector('.hero-description');
+        const backgroundLayers = document.querySelectorAll('.background-layer');
+
+        function updateSlide(index) {
+            currentSlide = index;
+            title.textContent = slides[currentSlide].title;
+            description.textContent = slides[currentSlide].description;
+            
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+
+            backgroundLayers.forEach((layer, i) => {
+                layer.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        leftArrow.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlide(currentSlide);
+        });
+
+        rightArrow.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide(currentSlide);
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                updateSlide(index);
+            });
+        });
+    </script>
+</div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
